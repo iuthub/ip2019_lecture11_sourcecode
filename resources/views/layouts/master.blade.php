@@ -11,6 +11,10 @@
     <title>Hello, world!</title>
   </head>
   <body>
+
+    @include('partials.header')
+
+    <hr>
     
     <div class="container">
       @yield('content')

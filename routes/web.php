@@ -12,26 +12,40 @@
 */
 
 Route::get('/', [
-	'uses'=>'PostsController@getIndex',
-	'as'=>'index'
-]);
+		'uses'=>'PostsController@getIndex',
+		'as'=>'index'
+	]);
 
-Route::post('/new', [
-	'uses'=>'PostsController@postNew',
-	'as'=>'new_post'
-]);
+Route::group([
+	'prefix'=>'admin',
+	'middleware'=>['auth']
+], function(){
+	
+	Route::get('/', [
+		'uses'=>'PostsController@getAdminIndex',
+		'as'=>'admin.index'
+	]);
 
-Route::get('/delete/{id}', [
-	'uses'=>'PostsController@getDelete',
-	'as'=>'delete'
-]);
+	Route::post('/new', [
+		'uses'=>'PostsController@postAdminNew',
+		'as'=>'admin.new_post'
+	]);
 
-Route::get('/edit/{id}', [
-	'uses'=>'PostsController@getEdit',
-	'as'=>'edit'
-]);
+	Route::get('/delete/{id}', [
+		'uses'=>'PostsController@getAdminDelete',
+		'as'=>'admin.delete'
+	]);
 
-Route::post('/edit', [
-	'uses'=>'PostsController@postEdit',
-	'as'=>'edit_post'
-]);
+	Route::get('/edit/{id}', [
+		'uses'=>'PostsController@getAdminEdit',
+		'as'=>'admin.edit'
+	]);
+
+	Route::post('/edit', [
+		'uses'=>'PostsController@postAdminEdit',
+		'as'=>'admin.edit_post'
+	]);
+});
+
+
+Auth::routes();

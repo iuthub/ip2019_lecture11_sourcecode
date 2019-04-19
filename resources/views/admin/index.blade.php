@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col">
-        <form action='{{ route('new_post') }}' method='post'>
+        <form action='{{ route('admin.new_post') }}' method='post'>
             <legend>New Post</legend>
             <div class="form-group">
                 <label for="title">Title</label>
@@ -33,7 +33,7 @@
 	                <div class="card">
 	                <h5 class="card-header">{{ $post->title }}</h5>
 	                <div class="card-body">
-	                     <form action='{{route('edit_post')}}' method='post'>
+	                     <form action='{{route('admin.edit_post')}}' method='post'>
 	                        <p class="card-text"> 
 	                            <div class="form-group">
 	                                <textarea type="text" class="form-control" id="body" name='body'>{{ $edit_post->body }}</textarea>
@@ -53,9 +53,9 @@
 		                <div class="card-body">
 		                    <p class="card-text">{{ $post->body }}</p>
 							
-							<a href="{{ route('edit', ['id'=> $post->id ]) }}" class="btn btn-primary">Edit</a>
+							<a href="{{ route('admin.edit', ['id'=> $post->id ]) }}" class="btn btn-primary">Edit</a>
 		                    
-		                    <a href="{{ route("delete", ['id'=>$post->id ])}}" class="btn btn-danger">Delete</a>
+		                    <a href="{{ route("admin.delete", ['id'=>$post->id ])}}" class="btn btn-danger">Delete</a>
 		                </div>
 	                </div>
 
